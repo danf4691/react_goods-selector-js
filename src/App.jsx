@@ -16,18 +16,18 @@ export const goods = [
 ];
 
 export const App = () => {
-  const [value, setValue] = useState('Jam');
+  const [selectedGood, setSelectedGood] = useState('Jam');
 
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
-        {value ? `${value} is selected` : 'No goods selected'}
-        {value && (
+        {selectedGood ? `${selectedGood} is selected` : 'No goods selected'}
+        {selectedGood && (
           <button
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
-            onClick={() => setValue('')}
+            onClick={() => setSelectedGood('')}
           />
         )}
       </h1>
@@ -35,7 +35,7 @@ export const App = () => {
       <table className="table">
         <tbody>
           {goods.map(good => {
-            const isSelected = good === value;
+            const isSelected = good === selectedGood;
 
             return (
               <tr
@@ -48,7 +48,7 @@ export const App = () => {
                     data-cy={isSelected ? 'RemoveButton' : 'AddButton'}
                     type="button"
                     className={isSelected ? 'button is-info' : 'button'}
-                    onClick={() => setValue(isSelected ? '' : good)}
+                    onClick={() => setSelectedGood(isSelected ? '' : good)}
                   >
                     {isSelected ? '-' : '+'}
                   </button>
@@ -64,46 +64,3 @@ export const App = () => {
     </main>
   );
 };
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <tr data-cy="Good">
-            <td>
-              <button data-cy="AddButton" type="button" className="button">
-                +
-              </button>
-            </td>
-
-            <td data-cy="GoodTitle" className="is-vcentered">
-              Dumplings
-            </td>
-          </tr>
-
-          <tr data-cy="Good" className="has-background-success-light">
-            <td>
-              <button
-                data-cy="RemoveButton"
-                type="button"
-                className="button is-info"
-              >
-                -
-              </button>
-            </td>
-
-            <td data-cy="GoodTitle" className="is-vcentered">
-              Jam
-            </td>
-          </tr>
-
-          <tr data-cy="Good">
-            <td>
-              <button data-cy="AddButton" type="button" className="button">
-                +
-              </button>
-            </td>
-
-            <td data-cy="GoodTitle" className="is-vcentered">
-              Garlic
-            </td>
-          </tr> */
-}
